@@ -1,28 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Post({ prepend }) {
-  const [counter, setCounter] = useState(0);
-
-  useEffect(() => {
-    document.title = `The current count is ${counter}`;
-  }, [counter]);
-
+export default function Post({ title, body, author }) {
   return (
     <>
       <div>
-        {prepend + counter}
+        {`Title: ${title}`}
       </div>
-      <button
-        type="button"
-        onClick={() => { setCounter(counter + 1); }}
-      >
-        Click me!
-      </button>
+      <div>
+        {`Body: ${body}`}
+      </div>
+      <div>
+        {`Author: ${author} \n`}
+      </div>
+      <br />
     </>
   );
 }
 
 Post.propTypes = {
-  prepend: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
 };
