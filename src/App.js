@@ -25,9 +25,10 @@ function App() {
       setPosts(querySnapshot.docs.map((doc) => doc.data()));
     });
 
-    firebase.firestore().collection('posts').get().then((querySnapshot) => {
-      setPosts(querySnapshot.docs.map((doc) => doc.data()));
-    });
+    firebase.firestore().collection('posts').orderBy('date').get()
+      .then((querySnapshot) => {
+        setPosts(querySnapshot.docs.map((doc) => doc.data()));
+      });
   }, []);
 
   return (
@@ -35,6 +36,7 @@ function App() {
       {posts.map((post) => (
         <Post
           title={post.title}
+          date={post.date}
           body={post.body}
           author={post.author}
         />
